@@ -15,9 +15,15 @@ namespace KuasCore.Interceptors
             Debug.Print("Interceptor 攔截到一個方法呼叫 = [{0}]", invocation);
 
             object result = invocation.Proceed();
-            Employee employee = (Employee)result;
-            employee.Name = employee.Name + "Hello!!!";
-            result = employee;
+            if (result is Employee)
+            {
+                Employee employee = (Employee)result;
+                employee.Name = employee.Name + "Hello!!!";
+                result = employee;
+
+
+            }
+            
             Console.WriteLine("回傳的資料已取得 [{0}]", result);
             Debug.Print("回傳的資料已取得 [{0}]", result);
 
